@@ -1,0 +1,90 @@
+/* Configurações Globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #050a1f;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;     /* Centraliza verticalmente */
+    margin: 0;
+    overflow: hidden;
+}
+
+
+.menu-list {
+    list-style: none;
+}
+
+.menu-item {
+    position: relative;
+    margin: 20px 0;
+}
+
+/* Estilo Base do Link (Apenas Contorno) */
+.menu-item a {
+    position: relative;
+    font-size: 5rem;
+    font-weight: 800;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px #00bfff;
+    display: inline-block;
+    transition: transform 0.4s ease-in-out;
+}
+
+.menu-item a::after {
+    content: attr(data-text);
+    position: absolute;
+    
+    /* 1. Começa 40px para a esquerda (aumentei para dar mais espaço) */
+    left: -40px; 
+    top: 0;
+    
+    /* 2. Alinha o texto azul com o branco */
+    text-indent: 40px; 
+    
+    /* 3. O SEGREDO: O padding cria o espaço vazio antes e depois das letras */
+    padding-left: 0; 
+    padding-right: 40px; /* Isso empurra a barra 40px para a direita da última letra */
+    
+    width: 0;
+    height: 100%;
+    color: #00bfff;
+    -webkit-text-stroke: 1px #00bfff;
+    border-right: 6px solid #00bfff;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: width 0.5s ease-in-out;
+}
+
+/* 4. O ajuste do Hover para aceitar o novo espaço */
+.menu-item a:hover::after {
+    /* 100% da palavra + 40px (da esquerda) + 40px (da direita) */
+    width: calc(100% + 80px); 
+}
+
+/* Efeito Hover */
+.menu-item a:hover {
+    transform: scale(1.1) translateX(20px); /* Leve aumento e deslocamento */
+}
+
+.menu-item a:hover::after {
+    width: 100%; /* Preenche o texto completamente */
+}
+
+/* Responsividade Básica */
+@media (max-width: 768px) {
+    .menu-item a {
+        font-size: 3rem;
+    }
+    .sidebar {
+        padding-left: 5vw;
+    }
+}
